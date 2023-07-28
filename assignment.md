@@ -22,8 +22,9 @@ Your tasks are as follows:
  - Restaurants or bars
  - Various POIs (points of interest) of your choice
 4. Create a DataFrame for the Yelp results and Foursquare results. 
-5. Compare the quality of the Yelp and Foursquare API. For your location, which API gives you the most complete information/better coverage? *NOTE:* Your definition of 'coverage' is up to you. It could be simple 'number of POIs in the area', but it could also be something more specific like 'number of reviews per POI', or 'number of different attributes of each POI'.
-
+5. Compare the quality of the Yelp and Foursquare API. For your location, which API gives you the most complete information/better coverage? 
+*NOTE:* Your definition of 'coverage' is up to you. It could be simple 'number of POIs in the area', 
+but it could also be something more specific like 'number of reviews per POI', or 'number of different attributes of each POI'.
 
 Complete the **yelp_foursquare_EDA.ipynb** notebook to demonstrate how you executed the tasks above.
 
@@ -39,8 +40,12 @@ Complete the **joining_data.ipynb** notebook to demonstrate how you executed the
 
 ## Part 4: Building a Model
 
-1. Build a regression model using Python’s `statsmodels` module that demonstrates a relationship between the number of bikes in a particular location and the characteristics of the POIs in that location.  
+1. Build a regression model using Python’s `statsmodels` module that demonstrates a relationship between 
+the number of bikes in a particular location and the characteristics of the POIs in that location.
+
 2. Interpret results. Expand on the model output, and derive insights from your model.
-3. Stretch: can you think of a way to turn the above regression problem into a classification one? Without coding, can you sketch out how you would cast the problem specifically, and lay out your approaches?
+
+3. Stretch: can you think of a way to turn the above regression problem into a classification one? 
+Without coding, can you sketch out how you would cast the problem specifically, and lay out your approaches?
 
 Complete the **model_building.ipynb** notebook to demonstrate how you executed the tasks above.
