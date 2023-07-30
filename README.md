@@ -4,6 +4,8 @@
 (fill in your description and goals here)
 
 ## Process
+
+city_bikes
 ### A CityBikes API was used to access public bike systems systems in Toronto.
 ### CityBike url: http://api.citybik.es/v2/
 A request was sent and data was collected and parsed through.
@@ -12,6 +14,7 @@ together into a new column, 'll', to be used for making Foursquare API requests.
 The table was saved to a file, 'bikes.csv', with the columns
 ['empty_slots', 'free_bikes', 'name', 'latitude', 'longitude', 'll'].
 
+AuthenticateYelpAPI
 The Yelp and Foursquare API requrests were done in separate files.
 The Yelp request was done in the file 'AuthenticateYelpAPI.ipynb'.
 First a class was made called 'yelp_api_request':
@@ -24,11 +27,11 @@ The yelp_api_request used it's search function to realize an object 'response' u
 which were then put into a new dataframe.
 All the data was then parsed through and the necessary data was stored into a new file, 'yelp_park_data.csv'.
 
-In the yelp_foursquare_EDA file, 
+The yelp_foursquare_EDA file
 
-The 
 
-### (your step 2)
+Joining data
+Reset index was used in city_bikes in order to be used as a unique primary key.
 
 ## Results
 
