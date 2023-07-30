@@ -4,7 +4,10 @@
 (fill in your description and goals here)
 
 ## Process
-### (your step 1)
+### A CityBikes API was used to access public bike systems systems in Toronto.
+### CityBike url: http://api.citybik.es/v2/
+
+
 ### (your step 2)
 
 ## Results
