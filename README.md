@@ -138,6 +138,10 @@ The distribution was save to the picture 'dep_var_bikes_norm'.
 A join plot comparing review count to rating was constructed, and also showed a skewed distribution,
 and was saved to the picture 'rc_rat_joinplot'.
 The natural logarithm of the number of reviews given was taken and this can be seen in the picture 'num_rev_log_rating'.
+
+All the independent and dependent variable data gathered in a dataframe was reviewed using the .describe() function.
+Nothing looked too out of place after normalization and the descripitive statistics are saved in the picture, 'var_desc_stat'.
+
 A correlation heat map was constructed and saved to the picture 'corr_heatmap'.
 The heatmap shows that the highest correlation is between the average distance to the park and the average distance
 to sports and recreation areas.  The lowest negative correlation was between number of bikes and number of empty slots (for the bikes).
@@ -157,6 +161,11 @@ A regression model with empty_slots, num_parks, and num_plygrd as variables was 
 	- The skew was closer to 0, so the data is more symmetric.
 	- The Durbin-Watson measurement is closer to 2, so the data has less heteroskedasticity.
 The regression results selected are saved into the picture 'OLS_reg_results'.
+
+The variables were tested so that they had a linear relationship through removing outliers and normalizing the data.
+The heatmap checked to make sure there was lower multicollinearity.
+The scatterplot showed that the more correlated data had a more normalized distribution of data points around the line of best fit.
+The OLS regression results which had less heteroskedasticity was chosen.
 
 The linear regression model looks like:
 '''
@@ -188,14 +197,18 @@ The results were saved into the picture 'MNLogit_reg_results'.
 
 ## Challenges 
 Initially constructing the classes to extract the data using an API request proved difficult but ended up working in the end.
+The challenge was sorting through what data from each sites' informaiton to include in the functions inside the class and to get
+them to work together.
 Storing the initial Yelp data into a CSV file was a mistake because some nested objects in the columns were then saved as strings.
 I was lucky to get all the data I needed from them when I saved the data into the initial file.
 I made sure to save the Foursquare data into a JSON file in order to extract any more nested objects.
 
+The most time was spent on parsing through the data to identify which information to gather and which tables to put it in.
+And to create keys to know how to fully join all the necessary informaiton.
+
 One of the main challenges with the model was transforming the dependent and independent variables into a normal distribution.
 Outliers, or even a high amount of zeros in the distributions made it difficult to normalize even after taking the natural logarithm,
 or taking the natural logarithm of the maximum value in the range minus the value of the datapoint.
-(discuss challenges you faced in the project).
 
 After removing all other variables, the adjusted r^2 increased because, 
 '''Adjusted R Squared = 1 – (1 – R2) * ((n – 1) / (n – k – 1))''',
@@ -207,6 +220,7 @@ where Where:
 Removing the other variables reduces k from the denominator, which in turn increases the value of A,
 so for an ARS increase to make sense, the residual sum of squares would have to decrease, which increases
 the R Squared value to compensate for the increase in A.
+Figuring out which variables to include based on p-value and R Squared took some trial and error.
 
 
 ## Future Goals
@@ -216,6 +230,9 @@ This way the magnitude of the score will also be proportional to the number
 of reviews given, (e.g. a 5 star rating with more reviews than another 5 star
 rating will have a higher magnitude).
 
+More work should be done to better prepare the data for linear regression, and to better normalize the data.
+
 There wasn't enought time to construct a confusion matrix for the MNLogit Regression classification model.
 
-(what would you do if you had more time?)
+I would also look for more POI and include locations where the count was highest when adding them to a
+regression model.
