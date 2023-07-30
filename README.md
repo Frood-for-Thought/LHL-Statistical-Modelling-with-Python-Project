@@ -1,11 +1,15 @@
 # Final-Project-Statistical-Modelling-with-Python
 
 ## Project/Goals
-(fill in your description and goals here)
+The goal of the project is to connect to CityBike, Yelp, and Foursquare APIs
+in order to extract data from a location of our choosing and then to demonstrate a relationship between 
+the number of bikes in a particular location and characteristics of the POIs of that location.
+This is done through using an OLS multivariable regression model.
+The logistic regression is transformed into a classification model using the data gathered.
 
 ## Process
 
-city_bikes
+# city_bikes
 ### A CityBikes API was used to access public bike systems systems in Toronto.
 ### CityBike url: http://api.citybik.es/v2/
 A request was sent and data was collected and parsed through.
@@ -14,11 +18,13 @@ together into a new column, 'll', to be used for making Foursquare API requests.
 The table was saved to a file, 'bikes.csv', with the columns
 ['empty_slots', 'free_bikes', 'name', 'latitude', 'longitude', 'll'].
 
-AuthenticateYelpAPI
+# AuthenticateYelpAPI
 The Yelp and Foursquare API requrests were done in separate files.
 The Yelp request was done in the file 'AuthenticateYelpAPI.ipynb'.
 First a class was made called 'yelp_api_request':
+'''
 yelp_api_request(API_KEY, SEARCH_PATH, DEFAULT_TERM, DEFAULT_LOCATION, SEARCH_LIMIT, LATITUDE, LONGITUDE)
+'''
 Which was made to take the API key, the search path, ('/v3/businesses/search'), the default term 'park',
 the location, 'Toronto', and the search limit was set to 10.
 The API key was set by the environment variable, and a loop was constructed to cycle through the latitude and longitude.
@@ -27,21 +33,26 @@ The yelp_api_request used it's search function to realize an object 'response' u
 which were then put into a new dataframe.
 All the data was then parsed through and the necessary data was stored into a new file, 'yelp_park_data.csv'.
 
-The yelp_foursquare_EDA file
+# The yelp_foursquare_EDA file
 Similar to the AuthenticateYelpAPI file, another class was made to request data from the Foursquare API.
 The bikes.csv was stored into a dataframe to be used by the foursquare_api_request class in another loop.
-foursquare_api_request(foursquare_id, CATEGORYID, SEARCH_LIMIT, ll) had fewer variables needed.
+'''
+foursquare_api_request(foursquare_id, CATEGORYID, SEARCH_LIMIT, ll)
+'''
+The class has fewer variables needed to be input.
 The foursquare_id was the API key taken from the environment variable.
 CATEGORYID = 16000, which was 'Landmarks and Outdoors' for Foursquare.
 SEARCH_LIMIT was set to 10
 ll was taken from the bikes dataframe to be used to the loop.
 The data extracted was saved into the file 'foursquare_outdoor_data.json'.
 The data was parsed through and some nested objects in the categories column was extracted 
-and put into a new table called 'fs_id_cat_df.csv'.  This table
+and put into a new table called 'fs_id_cat_df.csv'.  This table now has all the catagory names
+extracted and fsq_id as a foreign key to merge with 'foursquare_outdoor_data.json'.
+The catagorical data from Foursquare and the parent database were joined
+and duplicate rows and columns were filtered out.
+The data was saved into "fs_outdoor_data_with_categories".
 
-
-
-Comparing Results
+# Comparing Results of APIs
 Instead of a monthly allowance, like Foursquare, Yelp provides a daily allowance.
 An allowance which refreshes each day may be useful if a query does not return information
 which one would want, or something goes wrong with data collection.  In this case,
@@ -57,23 +68,83 @@ E.g. F.S. can provide more categoreis like "Park", "Hiking Trail", for one locat
 Yl would only provide "Park", but Yl also provides rating, review_count, image_url/url/ etc.
 More categorical location information was gathered for Foursquare than for Yelp.
 
-Joining data
+Since the access limit was reached extracting outdoor parks and locations, the top 10 restaurants
+were not able to be rated.  Instead, the top 10 outdoor locations was identified, 
+and review_count was also included in sort_values() because because higher reviews
+are more accurate with a larger sample size.
+
+# joining_data
 Before joining dataframes, column values were selected in the yelp_foursquare_EDA file, and
 duplicate rows were also filtered out in the yelp_foursquare_EDA file.
 
+Several tables were made using the already constructed files,
+These tables are displayed at the beginning of the joining_data file.
 
-In this case the fsq_id can be used as the primary key IN THE 'foursquare_outdoor_data.json' file.
-A new primary key should be constructed for 'fs_id_cat_df.csv'. 
-The categorical data in 'fs_id_cat_df.csv' was merged with 'foursquare_outdoor_data.json' on the fsq_id key, 
-and and duplicate rows and columns were filtered out, with citybike_index as the foreign key to bike_df.
-The categorical data in 'fs_id_cat_df.csv' was merged with 'foursquare_outdoor_data.json' on the
-fsq_id key, and the combined data 
-
-Reset index was used in city_bikes in order to be used as a unique primary key called 'citybike_index'.
+The dataframe from 'bikes.csv' used citybike_index as it's primary key.
+Reset index was used in the bike dataframe in order to be used as a unique primary key called 'citybike_index'.
 When importing data from the Yelp and Foursquare API, on top of the latitude and longitude data
 provided, the citybike_index was also stored into each file as a foreign key.
+A new primary key is constructed for the 'fs_id_cat_df.csv' table, 
+while the foreign key, 'fsq_id', connects to foursquare_outdoor_data.json.
+The duplicate rows are removed so now fsq_id is used as the primary key IN THE 'foursquare_outdoor_data.json' dataframe,
+and citybike_index is the foreign key to the bikes_df.
+The categorical data in 'fs_id_cat_df.csv' was merged with 'foursquare_outdoor_data.json' on the fsq_id key, 
+and and duplicate rows and columns were filtered out, with citybike_index as the foreign key to bike_df,
+then stored into a file, 'fs_outdoor_data_with_categories.csv'.
+The yp_index is now the primary key of the yelp_park_df and citybike_index is the foreign key for bike_df.
+
+A database was created called "LHL-Statistical-Modelling-with-Python.db" and stored in the data folder.
+The tables previously mentioned were successfully stored into the database.
+
+Several tables were joined to be saved into the file 'bike_yelp_fs_outdoor_db.csv',
+which contained the columns citybike_index, empty_slots, free_bikes, review_count, 
+rating, category_name, and distance.
+
+# model_building
+The newly created file contained all the data gathered to be used in in the model building process.
+NULL values were identified and determined how they would impact the final results of the regression model.
+The top three categories most counted near bikes were identified.
+The distances to the locations were plotted, outliers were removed, and histograms of the average distance
+to the locations became more normalized.  
+A count of the number of the top 3 locations near bikes were also plotted in histograms, and some skewed 
+distributions were normalized by taking the natural logarithm.
+The dependent variable, number of bikes was also skewed, and was then normalized by taking the natural logarithm.
+A join plot comparing review count to rating was constructed, and also showed a skewed distribution.
+Taking the natural logarithm of review count normalized the data more but both distributions were still skewed.
+Lambda functions were applied to the dataframe to more normalize the skewed distributions by taking the natural logarithm.
+A correlation heat map was constructed.
+A scatterplot grid was constructed.
+
+The results of the regression model are discussed below.
 
 ## Results
+
+The top three categories most counted near bikes were identified to be number of parks, number of playgrounds,
+and number of sports and recreation areas.
+The distances to the locations were plotted and saved in the picture 'distance_to_top_three_unfiltered'.
+The outliers were removed, and histograms of the average distance to the locations became more normalized.
+The normalized plots were saved in the picture 'distance_to_top_three_normal'.
+The number of the top three locations found near bikes were also plotted in a histogram, and saved to the picture
+'count_of_top_three_unfiltered'.
+The count of number of playgrounds and number of sports and recreation areas were more normalized by taking the
+natural logarithm, and save to the picture 'count_of_top_three_normal'.
+
+The dependent variable, number of bikes was also skewed when taking a histogram, and the distribution was saved to the
+picture 'dep_var_bikes_not_norm'.
+The distribution was then normalized by taking the natural logarithm, 
+and passed the Shapir-Wilk test for normalization.
+The distribution was save to the picture 'dep_var_bikes_norm'.
+
+A join plot comparing review count to rating was constructed, and also showed a skewed distribution,
+and was saved to the picture 'rc_rat_joinplot'.
+The natural logarithm of the number of reviews given was taken and this can be seen in the picture 'num_rev_log_rating'.
+A correlation heat map was constructed and saved to the picture 'corr_heatmap'.
+The heatmap shows that the highest correlation is between the average distance to the park and the average distance
+to sports and recreation areas.  The lowest negative correlation was between number of bikes and number of empty slots (for the bikes).
+There was also a relatively larger negative correlation between number of parks and playgrounds and number of reviews.
+A scatterplot grid was created and saved to the file 'scatterplot_grid'.
+This plot showed relatively more normalized distribution of data points around the line of best fit for variables which
+had greater correlation.
 
 There are three OLS Regression Results.  The results between the last two are very similar but there are some minor differences.
 The first OLS regression contained all the potential independent variables.  The p-values were all greater than
@@ -100,7 +171,8 @@ In the logit classification model, the LLR p-value approaches zero, so including
 compared to the intercept-only null model.  All the p-values are below the confidence interval of 0.05 and are statistically significant.
 The Pseudo R Squared value of 0.008 is low, which indicates the likelihood of a fitted model to be low.
 
-(fill in what you found about the comparative quality of API coverage in your chosen area and the results of your model.)
+The logistic regression is transformed into a classification model to determine if the variables gathered 
+can be used to identify if a park is in the vicinity.
 
 ## Challenges 
 Initially constructing the classes to extract the data using an API request proved difficult but ended up working in the end.
