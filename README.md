@@ -28,10 +28,50 @@ which were then put into a new dataframe.
 All the data was then parsed through and the necessary data was stored into a new file, 'yelp_park_data.csv'.
 
 The yelp_foursquare_EDA file
+Similar to the AuthenticateYelpAPI file, another class was made to request data from the Foursquare API.
+The bikes.csv was stored into a dataframe to be used by the foursquare_api_request class in another loop.
+foursquare_api_request(foursquare_id, CATEGORYID, SEARCH_LIMIT, ll) had fewer variables needed.
+The foursquare_id was the API key taken from the environment variable.
+CATEGORYID = 16000, which was 'Landmarks and Outdoors' for Foursquare.
+SEARCH_LIMIT was set to 10
+ll was taken from the bikes dataframe to be used to the loop.
+The data extracted was saved into the file 'foursquare_outdoor_data.json'.
+The data was parsed through and some nested objects in the categories column was extracted 
+and put into a new table called 'fs_id_cat_df.csv'.  This table
 
+
+
+Comparing Results
+Instead of a monthly allowance, like Foursquare, Yelp provides a daily allowance.
+An allowance which refreshes each day may be useful if a query does not return information
+which one would want, or something goes wrong with data collection.  In this case,
+the timeframe to review errors and collect new information could be done the following day.
+However, Foursquare did allow for more data collection than Yelp provided, and returned more
+locations given similar categories.  Yelp provided fewer categoreies and the access limit was
+also reached.
+Yelp had some good information concerning park review and rating scores for the POI set,
+but in terms of the categorical information, (the specific categoreies in that location name),
+more results were returned for Foursquare.  So while the quantity of information is greater 
+with Foursquare(F.S.), the quality of information can be slightly better with Yelp (Yl).
+E.g. F.S. can provide more categoreis like "Park", "Hiking Trail", for one location, while
+Yl would only provide "Park", but Yl also provides rating, review_count, image_url/url/ etc.
+More categorical location information was gathered for Foursquare than for Yelp.
 
 Joining data
-Reset index was used in city_bikes in order to be used as a unique primary key.
+Before joining dataframes, column values were selected in the yelp_foursquare_EDA file, and
+duplicate rows were also filtered out in the yelp_foursquare_EDA file.
+
+
+In this case the fsq_id can be used as the primary key IN THE 'foursquare_outdoor_data.json' file.
+A new primary key should be constructed for 'fs_id_cat_df.csv'. 
+The categorical data in 'fs_id_cat_df.csv' was merged with 'foursquare_outdoor_data.json' on the fsq_id key, 
+and and duplicate rows and columns were filtered out, with citybike_index as the foreign key to bike_df.
+The categorical data in 'fs_id_cat_df.csv' was merged with 'foursquare_outdoor_data.json' on the
+fsq_id key, and the combined data 
+
+Reset index was used in city_bikes in order to be used as a unique primary key called 'citybike_index'.
+When importing data from the Yelp and Foursquare API, on top of the latitude and longitude data
+provided, the citybike_index was also stored into each file as a foreign key.
 
 ## Results
 
@@ -63,6 +103,11 @@ The Pseudo R Squared value of 0.008 is low, which indicates the likelihood of a 
 (fill in what you found about the comparative quality of API coverage in your chosen area and the results of your model.)
 
 ## Challenges 
+Initially constructing the classes to extract the data using an API request proved difficult but ended up working in the end.
+Storing the initial Yelp data into a CSV file was a mistake because some nested objects in the columns were then saved as strings.
+I was lucky to get all the data I needed from them when I saved the data into the initial file.
+I made sure to save the Foursquare data into a JSON file in order to extract any more nested objects.
+
 One of the main challenges with the model was transforming the dependent and independent variables into a normal distribution.
 Outliers, or even a high amount of zeros in the distributions made it difficult to normalize even after taking the natural logarithm,
 or taking the natural logarithm of the maximum value in the range minus the value of the datapoint.
