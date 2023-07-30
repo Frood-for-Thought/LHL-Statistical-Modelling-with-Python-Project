@@ -31,7 +31,12 @@ x2 = number of parks
 x3 = number of playgrounds
 Solving for y: y = [exp(b0 - b1(x1) - b2(x2))]/(x3^b3)
 So the function takes on a Poisson GLM.
-	
+The negative coefficients mean that as the variables increase, the number of free bikes available decreases.
+
+In the logit classification model, the LLR p-value approaches zero, so including all the variables improves model fit, 
+compared to the intercept-only null model.  All the p-values are below the confidence interval of 0.05 and are statistically significant.
+The Pseudo R Squared value of 0.008 is low, which indicates the likelihood of a fitted model to be low.
+
 (fill in what you found about the comparative quality of API coverage in your chosen area and the results of your model.)
 
 ## Challenges 
@@ -58,5 +63,7 @@ independent variables, and instead normalize them into a weighted sum column.
 This way the magnitude of the score will also be proportional to the number
 of reviews given, (e.g. a 5 star rating with more reviews than another 5 star
 rating will have a higher magnitude).
+
+There wasn't enought time to construct a confusion matrix for the MNLogit Regression classification model.
 
 (what would you do if you had more time?)
