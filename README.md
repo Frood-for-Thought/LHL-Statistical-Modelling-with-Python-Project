@@ -6,7 +6,27 @@
 ## Process
 ### A CityBikes API was used to access public bike systems systems in Toronto.
 ### CityBike url: http://api.citybik.es/v2/
+A request was sent and data was collected and parsed through.
+A lambda function was used to collect the latitude and longitude and put the values
+together into a new column, 'll', to be used for making Foursquare API requests.
+The table was saved to a file, 'bikes.csv', with the columns
+['empty_slots', 'free_bikes', 'name', 'latitude', 'longitude', 'll'].
 
+The Yelp and Foursquare API requrests were done in separate files.
+The Yelp request was done in the file 'AuthenticateYelpAPI.ipynb'.
+First a class was made called 'yelp_api_request':
+yelp_api_request(API_KEY, SEARCH_PATH, DEFAULT_TERM, DEFAULT_LOCATION, SEARCH_LIMIT, LATITUDE, LONGITUDE)
+Which was made to take the API key, the search path, ('/v3/businesses/search'), the default term 'park',
+the location, 'Toronto', and the search limit was set to 10.
+The API key was set by the environment variable, and a loop was constructed to cycle through the latitude and longitude.
+The bikes.csv was imported into a dataframe to provide the latitude and longitude locations in the loop.
+The yelp_api_request used it's search function to realize an object 'response' using the coordinates provided,
+which were then put into a new dataframe.
+All the data was then parsed through and the necessary data was stored into a new file, 'yelp_park_data.csv'.
+
+In the yelp_foursquare_EDA file, 
+
+The 
 
 ### (your step 2)
 
