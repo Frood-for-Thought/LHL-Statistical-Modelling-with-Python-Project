@@ -146,7 +146,8 @@ A scatterplot grid was created and saved to the file 'scatterplot_grid'.
 This plot showed relatively more normalized distribution of data points around the line of best fit for variables which
 had greater correlation.
 
-There are three OLS Regression Results.  The results between the last two are very similar but there are some minor differences.
+There are three OLS Regression Results.
+The results between the last two are very similar but there are some minor differences.
 The first OLS regression contained all the potential independent variables.  The p-values were all greater than
 zero except for empty_slots.  Those with the highest p-values were discarded one-by-one, and different combinations were
 attempted until the variable p-values were all below the confidence interval 0.05. 
@@ -155,24 +156,35 @@ A regression model with empty_slots, num_parks, and num_plygrd as variables was 
 	- The adjusted R Squared value was greater with 0.34 so more of the dependent variable is explained by changes in the independent variables.
 	- The skew was closer to 0, so the data is more symmetric.
 	- The Durbin-Watson measurement is closer to 2, so the data has less heteroskedasticity.
+The regression results selected are saved into the picture 'OLS_reg_results'.
 
 The linear regression model looks like:
+'''
 ln(y) = b0 - b1(x1) - b2(x2) - b3(ln(x3))
+'''
 with b0 to b3 being the regression coefficients,
 y = the number of bikes
 x1 = empty bike slots
 x2 = number of parks
 x3 = number of playgrounds
-Solving for y: y = [exp(b0 - b1(x1) - b2(x2))]/(x3^b3)
+Solving for y: 
+'''
+y = [exp(b0 - b1(x1) - b2(x2))]/(x3^b3)
+'''
 So the function takes on a Poisson GLM.
 The negative coefficients mean that as the variables increase, the number of free bikes available decreases.
 
-In the logit classification model, the LLR p-value approaches zero, so including all the variables improves model fit, 
-compared to the intercept-only null model.  All the p-values are below the confidence interval of 0.05 and are statistically significant.
-The Pseudo R Squared value of 0.008 is low, which indicates the likelihood of a fitted model to be low.
 
 The logistic regression is transformed into a classification model to determine if the variables gathered 
 can be used to identify if a park is in the vicinity.
+This is because the highest count in categories was 'Park', so instead of looking at the number of bikes
+in the regression model, a new column can be changed into a boolean to determine if a location is a park or not.
+In the logit classification model, the LLR p-value approaches zero, so including all the variables improves model fit, 
+compared to the intercept-only null model.  All the p-values are below the confidence interval of 0.05 and are statistically significant.
+The variables are empty_slots, free_bikes, review_count, rating, and distance, with rating being the only positive coefficient.
+The Pseudo R Squared value of 0.008 is low, which indicates the likelihood of a fitted model to be low.
+The results were saved into the picture 'MNLogit_reg_results'.
+
 
 ## Challenges 
 Initially constructing the classes to extract the data using an API request proved difficult but ended up working in the end.
