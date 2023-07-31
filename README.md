@@ -163,9 +163,9 @@ Those with the highest p-values were discarded one-by-one, and different combina
 attempted until the variable p-values were all below the confidence interval 0.05. 
 Two OLS results have variables with p-values lower than 0.05, and a Prob (F-statistic) approaching zero, so the regression coefficients are not zero.
 A regression model with empty_slots, num_parks, and num_plygrd as variables was selected for three factors:
-	- The adjusted R Squared value was greater with 0.34 so more of the dependent variable is explained by changes in the independent variables.
-	- The skew was closer to 0, so the data is more symmetric.
-	- The Durbin-Watson measurement is closer to 2, so the data has less heteroskedasticity.
+- The adjusted R Squared value was greater with 0.34 so more of the dependent variable is explained by changes in the independent variables.
+- The skew was closer to 0, so the data is more symmetric.
+- The Durbin-Watson measurement is closer to 2, so the data has less heteroskedasticity.
 The regression results selected are saved into the picture 'OLS_reg_results'.
 
 The variables were tested so that they had a linear relationship through removing outliers and normalizing the data.
