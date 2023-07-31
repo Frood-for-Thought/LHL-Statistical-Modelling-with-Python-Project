@@ -217,15 +217,17 @@ One of the main challenges with the model was transforming the dependent and ind
 Outliers, or even a high amount of zeros in the distributions made it difficult to normalize even after taking the natural logarithm,
 or taking the natural logarithm of the maximum value in the range minus the value of the datapoint.
 
-After removing all other variables, the adjusted r^2 increased because, 
+After removing all other variables, the Adjusted R Squared (ARS) increased because, 
 ```math
-Adjusted R Squared = 1 – (1 – R2) * ((n – 1) / (n – k – 1))
+ARS = 1 – (1 – R2) * ((n – 1) / (n – k – 1))
 ```
 if ((n – 1) / (n – k – 1)) = A,
-Adjusted R Squared(ARS) = R2 + 1/A - 1
+'''math
+ARS = R2 + 1/A - 1
+'''
 where Where:
-    n – Number of points in the data set.
-    k – Number of independent variables in the model.
+- n = Number of points in the data set.
+- k = Number of independent variables in the model.
 Removing the other variables reduces k from the denominator, which in turn increases the value of A,
 so for an ARS increase to make sense, the residual sum of squares would have to decrease, which increases
 the R Squared value to compensate for the increase in A.
