@@ -175,7 +175,7 @@ The OLS regression results which had less heteroskedasticity was chosen.
 
 The linear regression model looks like:
 ```
-ln(y) = b0 - b1(x1) - b2(x2) - b3(ln(x3))
+$`ln(y + 1) = b0 - b1(x1) - b2(x2) - b3(ln(x3 + 1))$`
 ```
 with b0 to b3 being the regression coefficients,
 y = the number of bikes
@@ -184,7 +184,7 @@ x2 = number of parks
 x3 = number of playgrounds
 Solving for y: 
 ```
-y = [exp(b0 - b1(x1) - b2(x2))]/(x3^b3)
+y = [exp(b0 - b1(x1) - b2(x2))]/[(x3 + 1)^
 ```
 So the function takes on a Poisson GLM.
 The negative coefficients mean that as the variables increase, the number of free bikes available decreases.
