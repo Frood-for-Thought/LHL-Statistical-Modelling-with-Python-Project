@@ -22,9 +22,9 @@ The table was saved to a file, 'bikes.csv', with the columns
 The Yelp and Foursquare API requrests were done in separate files.
 The Yelp request was done in the file 'AuthenticateYelpAPI.ipynb'.
 First a class was made called 'yelp_api_request':
-'''
+```
 yelp_api_request(API_KEY, SEARCH_PATH, DEFAULT_TERM, DEFAULT_LOCATION, SEARCH_LIMIT, LATITUDE, LONGITUDE)
-'''
+```
 Which was made to take the API key, the search path, ('/v3/businesses/search'), the default term 'park',
 the location, 'Toronto', and the search limit was set to 10.
 The API key was set by the environment variable, and a loop was constructed to cycle through the latitude and longitude.
