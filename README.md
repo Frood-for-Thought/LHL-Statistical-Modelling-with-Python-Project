@@ -232,7 +232,7 @@ where Where:
 Removing the other variables reduces k from the denominator, which in turn increases the value of A,
 so for an ARS increase to make sense, the residual sum of squares would have to decrease, which increases
 the R Squared value to compensate for the increase in A.
-Figuring out which variables to include based on p-value and R Squared took some trial and error.
+Figuring out which variables to include based on p-value and R Squared took some trial and error due to multicollinearity.
 
 
 ## Future Goals
