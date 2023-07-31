@@ -36,9 +36,9 @@ All the data was then parsed through and the necessary data was stored into a ne
 # The yelp_foursquare_EDA file
 Similar to the AuthenticateYelpAPI file, another class was made to request data from the Foursquare API.
 The bikes.csv was stored into a dataframe to be used by the foursquare_api_request class in another loop.
-'''
+```
 foursquare_api_request(foursquare_id, CATEGORYID, SEARCH_LIMIT, ll)
-'''
+```
 The class has fewer variables needed to be input.
 The foursquare_id was the API key taken from the environment variable.
 CATEGORYID = 16000, which was 'Landmarks and Outdoors' for Foursquare.
