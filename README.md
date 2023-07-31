@@ -45,6 +45,7 @@ foursquare_api_request(foursquare_id, CATEGORYID, SEARCH_LIMIT, ll)
 - SEARCH_LIMIT was set to 10.
 - ll was taken from the bikes dataframe to be used to the loop.
 - The data extracted was saved into the file 'foursquare_outdoor_data.json'.
+
 The data was parsed through and some nested objects in the categories column was extracted 
 and put into a new table called 'fs_id_cat_df.csv'.  This table now has all the catagory names
 extracted and fsq_id as a foreign key to merge with 'foursquare_outdoor_data.json'.
