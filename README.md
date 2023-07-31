@@ -10,7 +10,7 @@ The logistic regression is transformed into a classification model using the dat
 ## Process
 
 # city_bikes
-### A CityBikes API was used to access public bike systems in Toronto.
+# A CityBikes API was used to access public bike systems in Toronto.
 ### CityBike url: http://api.citybik.es/v2/
 A request was sent and data was collected and parsed through.
 A lambda function was used to collect the latitude and longitude and put the values
