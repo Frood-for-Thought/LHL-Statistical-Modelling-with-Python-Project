@@ -132,18 +132,20 @@ natural logarithm, and save to the picture 'count_of_top_three_normal'.
 The dependent variable, number of bikes was also skewed when taking a histogram, and the distribution was saved to the
 picture 'dep_var_bikes_not_norm'.
 The distribution was then normalized by taking the natural logarithm, 
-and passed the Shapir-Wilk test for normalization.
+and passed the Shapiro-Wilk test for normalization.
 The distribution was save to the picture 'dep_var_bikes_norm'.
 
 A join plot comparing review count to rating was constructed, and also showed a skewed distribution,
 and was saved to the picture 'rc_rat_joinplot'.
+Review count was skewed to zero but also contained very large outliers.
+Rating was skewed with a median of around 4.
 The natural logarithm of the number of reviews given was taken and this can be seen in the picture 'num_rev_log_rating'.
 
 All the independent and dependent variable data gathered in a dataframe was reviewed using the .describe() function.
 Nothing looked too out of place after normalization and the descripitive statistics are saved in the picture, 'var_desc_stat'.
 
 A correlation heat map was constructed and saved to the picture 'corr_heatmap'.
-The heatmap shows that the highest correlation is between the average distance to the park and the average distance
+The heatmap shows that the highest correlation is between the distance to the park and the distance
 to sports and recreation areas.  The lowest negative correlation was between number of bikes and number of empty slots (for the bikes).
 There was also a relatively larger negative correlation between number of parks and playgrounds and number of reviews.
 A scatterplot grid was created and saved to the file 'scatterplot_grid'.
@@ -154,7 +156,7 @@ There are three OLS Regression Results.
 Two results have different combinations of variables and are very similar but there are some minor differences.
 The first OLS regression contained all the potential independent variables.  
 med_review had a passing p-value but was not included because it was negatively correlated with num_parks,
-so due to multicollinearity when combined med_review had too large a p-value.
+so due to multicollinearity when combined, med_review had too large a p-value.
 Those with the highest p-values were discarded one-by-one, and different combinations were
 attempted until the variable p-values were all below the confidence interval 0.05. 
 Two OLS results have variables with p-values lower than 0.05, and a Prob (F-statistic) approaching zero, so the regression coefficients are not zero.
