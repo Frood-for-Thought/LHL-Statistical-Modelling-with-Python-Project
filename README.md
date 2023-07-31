@@ -222,9 +222,9 @@ After removing all other variables, the Adjusted R Squared (ARS) increased becau
 ARS = 1 – (1 – R2) * ((n – 1) / (n – k – 1))
 ```
 if ((n – 1) / (n – k – 1)) = A,
-'''math
+```math
 ARS = R2 + 1/A - 1
-'''
+```
 where Where:
 - n = Number of points in the data set.
 - k = Number of independent variables in the model.
