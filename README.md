@@ -151,9 +151,11 @@ This plot showed relatively more normalized distribution of data points around t
 had greater correlation.
 
 There are three OLS Regression Results.
-The results between the last two are very similar but there are some minor differences.
-The first OLS regression contained all the potential independent variables.  The p-values were all greater than
-zero except for empty_slots.  Those with the highest p-values were discarded one-by-one, and different combinations were
+Two results have different combinations of variables and are very similar but there are some minor differences.
+The first OLS regression contained all the potential independent variables.  
+med_review had a passing p-value but was not included because it was negatively correlated with num_parks,
+so due to multicollinearity when combined med_review had too large a p-value.
+Those with the highest p-values were discarded one-by-one, and different combinations were
 attempted until the variable p-values were all below the confidence interval 0.05. 
 Two OLS results have variables with p-values lower than 0.05, and a Prob (F-statistic) approaching zero, so the regression coefficients are not zero.
 A regression model with empty_slots, num_parks, and num_plygrd as variables was selected for three factors:
