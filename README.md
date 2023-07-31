@@ -174,8 +174,8 @@ The scatterplot showed that the more correlated data had a more normalized distr
 The OLS regression results which had less heteroskedasticity was chosen.
 
 The linear regression model looks like:
-```
-$`ln(y + 1) = b0 - b1(x1) - b2(x2) - b3(ln(x3 + 1))$`
+```math
+ln(y + 1) = b0 - b1(x1) - b2(x2) - b3(ln(x3 + 1))
 ```
 with b0 to b3 being the regression coefficients,
 y = the number of bikes
