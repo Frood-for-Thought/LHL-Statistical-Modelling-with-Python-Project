@@ -228,6 +228,7 @@ ARS = R2 + 1/A - 1
 where Where:
 - n = Number of points in the data set.
 - k = Number of independent variables in the model.
+
 Removing the other variables reduces k from the denominator, which in turn increases the value of A,
 so for an ARS increase to make sense, the residual sum of squares would have to decrease, which increases
 the R Squared value to compensate for the increase in A.
