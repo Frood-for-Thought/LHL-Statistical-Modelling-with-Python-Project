@@ -29,7 +29,7 @@ Which was made to take the API key, the search path, ('/v3/businesses/search'), 
 the location, 'Toronto', and the search limit was set to 10.
 The API key was set by the environment variable, and a loop was constructed to cycle through the latitude and longitude.
 The bikes.csv was imported into a dataframe to provide the latitude and longitude locations in the loop.
-The yelp_api_request used it's search function to realize an object 'response' using the coordinates provided,
+The yelp_api_request used its search function to realize an object 'response' using the coordinates provided,
 which were then put into a new dataframe.
 All the data was then parsed through and the necessary data was stored into a new file, 'yelp_park_data.csv'.
 
@@ -61,6 +61,7 @@ the timeframe to review errors and collect new information could be done the fol
 However, Foursquare did allow for more data collection than Yelp provided, and returned more
 locations given similar categories.  Yelp provided fewer categoreies and the access limit was
 also reached.
+
 Yelp had some good information concerning park review and rating scores for the POI set,
 but in terms of the categorical information, (the specific categoreies in that location name),
 more results were returned for Foursquare.  So while the quantity of information is greater 
@@ -106,7 +107,7 @@ The newly created file contained all the data gathered to be used in in the mode
 NULL values were identified and determined how they would impact the final results of the regression model.
 The top three categories most counted near bikes were identified.
 The distances to the locations were plotted, outliers were removed, and histograms of the average distance
-to the locations became more normalized.  
+to the locations became more normalized.
 A count of the number of the top 3 locations near bikes were also plotted in histograms, and some skewed 
 distributions were normalized by taking the natural logarithm.
 The dependent variable, number of bikes was also skewed, and was then normalized by taking the natural logarithm.
