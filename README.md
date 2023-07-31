@@ -179,7 +179,7 @@ ln(y + 1) = b0 - b1(x1) - b2(x2) - b3(ln(x3 + 1))
 ```
 Solving for y: 
 ```math
-y = exp(b0 - b1(x1) - b2(x2))/(x3 + 1)^{b3} - 1
+y = \frac{exp(b0 - b1(x1) - b2(x2))}{(x3 + 1)^{b3}} - 1
 ```
 - b0 to b3 being the regression coefficients
 - y = the number of bikes
