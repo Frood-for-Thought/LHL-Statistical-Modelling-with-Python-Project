@@ -82,18 +82,18 @@ duplicate rows were also filtered out in the yelp_foursquare_EDA file.
 Several tables were made using the already constructed files,
 These tables are displayed at the beginning of the joining_data file.
 
-The dataframe from 'bikes.csv' used citybike_index as it's primary key.
-Reset index was used in the bike dataframe in order to be used as a unique primary key called 'citybike_index'.
-When importing data from the Yelp and Foursquare API, on top of the latitude and longitude data
+- The dataframe from 'bikes.csv' used citybike_index as it's primary key.
+- Reset index was used in the bike dataframe in order to be used as a unique primary key called 'citybike_index'.
+- When importing data from the Yelp and Foursquare API, on top of the latitude and longitude data
 provided, the citybike_index was also stored into each file as a foreign key.
-A new primary key is constructed for the 'fs_id_cat_df.csv' table, 
+- A new primary key is constructed for the 'fs_id_cat_df.csv' table, 
 while the foreign key, 'fsq_id', connects to foursquare_outdoor_data.json.
-The duplicate rows are removed so now fsq_id is used as the primary key IN THE 'foursquare_outdoor_data.json' dataframe,
+- The duplicate rows are removed so now fsq_id is used as the primary key IN THE 'foursquare_outdoor_data.json' dataframe,
 and citybike_index is the foreign key to the bikes_df.
-The categorical data in 'fs_id_cat_df.csv' was merged with 'foursquare_outdoor_data.json' on the fsq_id key, 
+- The categorical data in 'fs_id_cat_df.csv' was merged with 'foursquare_outdoor_data.json' on the fsq_id key, 
 and and duplicate rows and columns were filtered out, with citybike_index as the foreign key to bike_df,
 then stored into a file, 'fs_outdoor_data_with_categories.csv'.
-The yp_index is now the primary key of the yelp_park_df and citybike_index is the foreign key for bike_df.
+- The yp_index is now the primary key of the yelp_park_df and citybike_index is the foreign key for bike_df.
 
 A database was created called "LHL-Statistical-Modelling-with-Python.db" and stored in the data folder.
 The tables previously mentioned were successfully stored into the database.
