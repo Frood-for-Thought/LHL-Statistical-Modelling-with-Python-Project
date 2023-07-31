@@ -172,18 +172,18 @@ The scatterplot showed that the more correlated data had a more normalized distr
 The OLS regression results which had less heteroskedasticity was chosen.
 
 The linear regression model looks like:
-'''
+```
 ln(y) = b0 - b1(x1) - b2(x2) - b3(ln(x3))
-'''
+```
 with b0 to b3 being the regression coefficients,
 y = the number of bikes
 x1 = empty bike slots
 x2 = number of parks
 x3 = number of playgrounds
 Solving for y: 
-'''
+```
 y = [exp(b0 - b1(x1) - b2(x2))]/(x3^b3)
-'''
+```
 So the function takes on a Poisson GLM.
 The negative coefficients mean that as the variables increase, the number of free bikes available decreases.
 
@@ -215,7 +215,9 @@ Outliers, or even a high amount of zeros in the distributions made it difficult 
 or taking the natural logarithm of the maximum value in the range minus the value of the datapoint.
 
 After removing all other variables, the adjusted r^2 increased because, 
-'''Adjusted R Squared = 1 – (1 – R2) * ((n – 1) / (n – k – 1))''',
+```
+Adjusted R Squared = 1 – (1 – R2) * ((n – 1) / (n – k – 1))
+```
 if ((n – 1) / (n – k – 1)) = A,
 Adjusted R Squared(ARS) = R2 + 1/A - 1
 where Where:
