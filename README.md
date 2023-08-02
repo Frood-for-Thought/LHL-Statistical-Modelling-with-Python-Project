@@ -190,13 +190,12 @@ y = \frac{exp(b0 - b1(x1) - b2(x2))}{(x3 + 1)^{b3}} - 1
 So the function takes on a Poisson GLM.
 The negative coefficients mean that as the variables increase, the number of free bikes available decreases.
 
-
-The logistic regression is transformed into a classification model to determine if the variables gathered 
+The logistic regression was transformed into a classification model to determine if the variables gathered 
 can be used to identify if a park is in the vicinity.
 This is because the highest count in categories was 'Park', so instead of looking at the number of bikes
 in the regression model, a new column can be changed into a boolean to determine if a location is a park or not.
 In the logit classification model, the LLR p-value approaches zero, so including all the variables improves model fit, 
-compared to the intercept-only null model.  All the p-values are below the confidence interval of 0.05 and are statistically significant.
+compared to the intercept-only null model.  All the p-values were below the confidence interval of 0.05 and are statistically significant.
 The variables are empty_slots, free_bikes, review_count, rating, and distance, with rating being the only positive coefficient.
 The Pseudo R Squared value of 0.008 is low, which indicates the likelihood of a fitted model to be low.
 The results were saved into the picture 'MNLogit_reg_results'.
@@ -243,6 +242,12 @@ of reviews given, (e.g. a 5 star rating with more reviews than another 5 star
 rating will have a higher magnitude).
 
 More work should be done to better prepare the data for linear regression, and to better normalize the data.
+For instance, it would be interesting to experiment with the correlation between the med_review variable and 
+num_parks with num_plygrd.
+A new regression model with med_review as the dependent variable, with num_parks and num_plygrd as independent
+variables could be looked at.  
+It would be interesting to experiment with the med_review regression model to see if it would be better
+correlated to the number of free bikes.
 
 There wasn't enought time to construct a confusion matrix for the MNLogit Regression classification model.
 
