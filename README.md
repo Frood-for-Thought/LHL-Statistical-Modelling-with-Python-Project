@@ -40,7 +40,7 @@ The bikes.csv was stored into a dataframe to be used by the foursquare_api_reque
 foursquare_api_request(foursquare_id, CATEGORYID, SEARCH_LIMIT, ll)
 ```
 - The class has fewer variables needed to be input.
-- The :foursquare_id" was the API key taken from the environment variable.
+- The "foursquare_id" was the API key taken from the environment variable.
 - "CATEGORYID" = 16000, the code set was for 'Landmarks and Outdoors' in Foursquare.
 - "SEARCH_LIMIT" was set to 10.
 - "ll" was taken from the bikes dataframe to be used to the loop.
